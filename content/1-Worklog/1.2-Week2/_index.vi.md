@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 2"
-date: 2024-01-01
+date: 2026
 weight: 1
 chapter: false
 pre: " <b> 1.2. </b> "
@@ -15,11 +15,14 @@ pre: " <b> 1.2. </b> "
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 1   | - Học Amazon RDS với ứng dụng Node.js.
+- Tạo RDS MySQL trong private subnet, cấu hình DB subnet group và kết nối từ EC2 web server.                                                                                       | 24/04/2026   | 26/04/2026      |
+| 2   | - Áp dụng security group chaining để bảo vệ database.
+- Chỉ cho phép traffic MySQL đi từ EC2 Web App Security Group và tránh mở database ra Internet.                                         | 25/04/2026   | 26/04/2026      | [<https://cloudjourney.awsstudygroup.com/>](https://000005.awsstudygroup.com/) |
+| 3   | - Thực hành chiến lược gắn thẻ tài nguyên.
+- Tạo EC2 cho các môi trường khác nhau và quản lý tag hàng loạt qua EC2 Tags console. | 26/04/2026   | 28/04/2026      | [<https://cloudjourney.awsstudygroup.com/>](https://000027.awsstudygroup.com/) |
+| 4   | - Tạo Resource Group dựa trên tag.
+- Preview và lưu nhóm tài nguyên theo điều kiện tag của EC2 để dễ tìm kiếm và quản lý.                  | 28/04/2026   | 30/04/2026      | <https://cloudjourney.awsstudygroup.com/> |
 
 
 ### Kết quả đạt được tuần 2:
