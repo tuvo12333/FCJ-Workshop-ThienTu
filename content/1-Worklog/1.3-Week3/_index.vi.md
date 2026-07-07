@@ -9,8 +9,10 @@ pre: " <b> 1.3. </b> "
 
 ### Mục tiêu tuần 3:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Thiết lập chốt chặn tài chính để tránh phát sinh chi phí AWS ngoài ý muốn.
+* Phân biệt Cost Budget, Usage Budget, RI Budget và Savings Plans Budget.
+* Xây dựng kỹ năng quan sát hệ thống với CloudWatch metrics, logs, alarms, dashboards và SNS.
+* Thực hành đọc metrics bằng search expression, metric math và dashboard widget.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
@@ -24,34 +26,20 @@ pre: " <b> 1.3. </b> "
 
 ### Kết quả đạt được tuần 3:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Tổng quan:
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+Trong tuần này, tôi tập trung vào chủ đề chốt chặn chi phí và nền tảng quan sát hệ thống. Nội dung được tổng hợp từ worklog theo ngày và biên tập lại thành định dạng báo cáo theo tuần.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Kiến thức đã học:
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+- Thiết lập chốt chặn tài chính để tránh phát sinh chi phí AWS ngoài ý muốn.
+- Phân biệt Cost Budget, Usage Budget, RI Budget và Savings Plans Budget.
+- Xây dựng kỹ năng quan sát hệ thống với CloudWatch metrics, logs, alarms, dashboards và SNS.
+- Thực hành đọc metrics bằng search expression, metric math và dashboard widget.
+Thực hành:
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
+- Cấu hình được cảnh báo ngân sách theo cả góc nhìn chi phí và mức sử dụng.
+Hiểu vì sao cần tạo financial guardrails trước khi thực hành nhiều lab.
+- Bắt đầu làm việc với CloudWatch metrics và biết cách xử lý giới hạn khi triển khai hạ tầng.
 
 
