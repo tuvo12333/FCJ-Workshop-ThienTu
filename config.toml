@@ -20,6 +20,7 @@ home = [ "HTML", "RSS", "JSON"]
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
+  relativeURLs = true
   
 [Languages]
 [Languages.en]
