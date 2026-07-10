@@ -27,7 +27,7 @@ Nội dung worklog bao gồm AWS identity and access management, networking, com
 
 **Tuần 8:** [ IAM nâng cao, CDK, database migration và truy cập có điều kiện](1.8-week8/)
 
-**Tuần 9:** [Nền tảng microservice HaShop: user, product, inventory và cart](1.9-week9/)
+**Tuần 9:** [Quản lý sinh viên trên AWS](1.9-week9/)
 
 **Tuần 10:** [ Luồng nghiệp vụ HaShop: order, payment, notification và front-end](1.10-week10/)
 

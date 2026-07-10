@@ -25,31 +25,19 @@ pre: " <b> 1.1. </b> "
 
 ### Week 1 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Overview:
 
-* Successfully created and configured an AWS Free Tier account.
+During this week, I focused on getting started with aws, iam, vpc, and ec2. The work was organized from my daily learning notes and adjusted into a weekly internship-report format.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* Learned theory:
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+- Understand the internship roadmap and the role of AWS cloud services in practical system deployment.
+- Set up safer access with IAM users, groups, policies, roles, and billing access delegation.
+- Build foundational networking knowledge with VPC, public/private subnets, routing, security groups, and VPC endpoints.
+- Launch EC2 instances and practice basic application deployment on Linux and Windows environments.
+* Hands-on labs:
 
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Built the initial AWS account access model without relying on root for daily work.
+- Understood how VPC routing, security groups, bastion access, and endpoints work together.
+- Successfully launched EC2 instances and deployed a simple application environment.
+Practiced systematic troubleshooting and resource cleanup.

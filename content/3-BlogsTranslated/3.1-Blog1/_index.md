@@ -6,119 +6,76 @@ chapter: false
 pre: " <b> 3.1. </b> "
 ---
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# Modernizing KYC with AWS Serverless Solutions and AI Agents for Financial Services
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
-
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+In a financial environment that demands rapid processing and strict security, traditional KYC processes often face challenges due to manual operations, long waiting times, and a high risk of errors. This article explains how financial institutions can transform this process using a serverless architecture combined with AI agents.
 
 ---
+## The Importance of KYC
 
-## Architecture Guidance
+- Protecting the financial system: KYC verifies customer identity and detects fraud to safeguard the integrity of the system.
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+- Supporting regulatory compliance: KYC plays a critical role in complying with anti-money laundering (AML) and counter-terrorism financing (CTF) regulations.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+- Preventing fraud: The process helps detect and prevent identity theft and the use of forged documents.
 
-**The solution architecture is now as follows:**
+- Managing risk: KYC supports customer profile assessment and monitoring of financial transactions to control risk.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+- Building trust: Implementing KYC creates transparency, thereby strengthening customer trust in financial institutions.
 
----
+- Complexity when scaling: KYC compliance is becoming increasingly difficult as financial institutions expand into multiple products, customer segments (retail, SME, enterprise), and geographic regions.
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
-
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+- Legal framework requirements: Operating across multiple regions requires compliance with diverse regulatory frameworks such as the BSA, the USA PATRIOT Act (United States), AMLD (EU), and guidance from FATF and MAS (Singapore).
 
 ---
+## Traditional KYC
 
-## Technology Choices and Communication Scope
-
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Traditional KYC processes verify customer identity, assess risk, and monitor money laundering. They rely on manual document collection, checking identity across multiple databases, and periodic reviews.
+Although these established processes have served the financial industry for decades, they were designed for a different era with lower transaction volumes, simpler products, and less sophisticated threats. Today’s digital-first financial environment demands a fundamental rethinking of KYC at scale.
 
 ---
+## Cloud-Native KYC Solution Architecture Using AI Agents
 
-## The Pub/Sub Hub
-
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
-
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+![High-level agent architecture for real-time KYC](/images/3-BlogsTranslated/kientruc.png)
 
 ---
+## Solution Components
 
-## Core Microservice
+**Event-Driven Communication Infrastructure with Amazon MSK**
+- Amazon MSK serves as the communication backbone, enabling asynchronous, real-time message exchange between AI agents and enterprise systems. The streaming infrastructure is organized into separate topic categories that support two-way flows.
+- Inbound topics collect customer interactions through KYC requests (new applications), document uploads (identity documents), ID verification results (responses from third-party providers), and transaction events (fraud/risk signals).
+- Outbound topics publish KYC decisions with confidence scores and audit logs to core banking systems, route complex cases to human reviewers through case-management events, and trigger fraud alerts for security teams.
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+**AI Agent Orchestration Layer**
+KYC Monitoring Agent
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+The KYC Monitoring Agent uses Amazon Bedrock AgentCore to dynamically determine optimal patterns for collaborating with supporting agents.
 
----
-
-## Front Door Microservice
-
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+**Intelligent Knowledge Management Architecture**
+- The KYC knowledge base implements a retrieval-augmented generation (RAG) pattern to enable agent decisions based on current, factual information rather than relying only on foundation model training. Amazon S3 stores source documents, including regulations from financial authorities, organization-specific compliance rules, internal policies, and provider documents, and is configured to track changes over time.
+- Context-aware retrieval enriches queries with case-specific information such as the customer’s legal region, document type, and risk level, enabling highly relevant regulatory guidance.
+- A real-time decision store (Amazon DynamoDB) complements the knowledge base with sub-millisecond access to frequently used structured data, including current KYC decision status, risk scores, customer interaction history, and dynamic configuration parameters that control agent behavior.
 
 ---
+## Secure Integration with On-Premises Financial Systems
 
-## Staging ER7 Microservice
+The integration architecture connects on-premises financial systems through Action Groups, linking the cloud-native agent layer with the existing enterprise infrastructure.
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+The customer management system receives real-time KYC decisions, updates verification status, and manages account activation flags. The transaction monitoring system consumes fraud alerts and risk scores, enabling immediate action for suspicious patterns. The case management system receives escalated cases with comprehensive agent analysis context, accelerating human review. The risk and AML systems integrate in both directions to maintain consistent risk assessment. The core banking system receives approved verifications and triggers account activation.
+
+Secure connectivity through AWS Direct Connect or AWS Site-to-Site VPN provides encrypted data transmission over dedicated network paths. API calls include comprehensive audit logging through AWS CloudTrail and Amazon CloudWatch to meet regulatory requirements.
 
 ---
+## Security Considerations
 
-## New Features in the Solution
+The solution should integrate multi-layered security controls, continuous monitoring, and automated compliance auditing to meet the strict expectations of financial regulators and internal risk teams. Financial organizations should perform comprehensive threat modeling to identify risks, including those introduced by AI agent systems. For more information, please refer to the Security Guide.
 
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+---
+## Conclusion
+
+This KYC architecture uses AWS serverless services and Amazon Bedrock to process verifications faster and at larger scale. The parallel agent execution model is designed to reduce typical KYC verification time from 3–5 days to near real time for standard cases. This approach enables much faster processing through the concurrent operation of document analysis, identity verification, and fraud detection agents rather than sequential workflows.
+
+With this architecture, financial institutions can process large volumes of verifications through flexible scalability, optimize costs through serverless pay-per-use pricing, and improve accuracy through collaboration among multiple agents.
+
+Source: https://awsstudygroup.com/2026/05/26/hien-dai-hoa-kyc-voi-cac-giai-phap-serverless-cua-aws-va-ai-agent-cho-dich-vu-tai-chinh/
 

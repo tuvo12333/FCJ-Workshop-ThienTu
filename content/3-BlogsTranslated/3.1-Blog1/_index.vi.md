@@ -6,48 +6,35 @@ chapter: false
 pre: " <b> 3.1. </b> "
 ---
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+# Hiện đại hóa KYC với các giải pháp serverless của AWS và AI agent cho dịch vụ tài chính
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Trong bối cảnh ngành tài chính yêu cầu tốc độ xử lý nhanh và tính bảo mật khắt khe, quy trình KYC truyền thống thường gặp trở ngại do thao tác thủ công, thời gian chờ đợi kéo dài và khả năng sai sót cao. Bài viết này trình bày cách các tổ chức tài chính có thể chuyển đổi quy trình này bằng kiến trúc Serverless kết hợp với AI Agents.
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
 
----
+## Vai trò quan trọng của KYC
 
-## Hướng dẫn kiến trúc
+- Bảo vệ hệ thống tài chính: KYC thực hiện xác minh danh tính khách hàng và phát hiện gian lận để bảo vệ sự an toàn của hệ thống.
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+- Hỗ trợ tuân thủ quy định pháp lý: KYC đóng vai trò then chốt trong việc tuân thủ các quy định về chống rửa tiền (AML) và chống tài trợ khủng bố (CTF).
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+- Ngăn chặn gian lận: Quy trình này giúp phát hiện và ngăn chặn các hành vi đánh cắp danh tính cũng như sử dụng tài liệu giả mạo.
 
-**Kiến trúc giải pháp bây giờ như sau:**
+- Quản lý rủi ro: KYC hỗ trợ đánh giá hồ sơ khách hàng và giám sát các giao dịch tài chính để kiểm soát rủi ro.
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+- Xây dựng lòng tin: Việc thực hiện KYC tạo ra sự minh bạch, từ đó củng cố lòng tin của khách hàng đối với tổ chức tài chính.
 
----
+- Sự phức tạp khi mở rộng: Việc tuân thủ KYC ngày càng trở nên khó khăn khi các tổ chức tài chính mở rộng sang nhiều sản phẩm, phân khúc khách hàng (bán lẻ, SME, doanh nghiệp) và khu vực địa lý khác nhau.
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+- Yêu cầu về khuôn khổ pháp lý: Hoạt động trên nhiều khu vực đòi hỏi phải tuân thủ các khuôn khổ quy định đa dạng như BSA, Đạo luật USA PATRIOT (Hoa Kỳ), AMLD (EU), cũng như các hướng dẫn từ FATF và MAS (Singapore).
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+## KYC truyền thống 
 
----
+Các quy trình KYC truyền thống xác minh danh tính khách hàng, đánh giá rủi ro và giám sát rửa tiền. Chúng dựa vào việc thu thập tài liệu thủ công, kiểm tra danh tính trên nhiều cơ sở dữ liệu và đánh giá định kỳ. 
+Mặc dù các quy trình đã được thiết lập này đã phục vụ ngành tài chính trong nhiều thập kỷ, nhưng chúng được thiết kế cho một kỷ nguyên khác với khối lượng giao dịch thấp hơn, các sản phẩm đơn giản hơn và bối cảnh mối đe dọa ít tinh vi hơn. Môi trường tài chính ưu tiên kỹ thuật số ngày nay đòi hỏi một sự tái hình dung cơ bản về KYC ở quy mô lớn.
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+## Kiến trúc giải pháp KYC gốc đám mây sử dụng AI tác nhân
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
-
----
+![Kiến trúc tác nhân cấp cao cho KYC theo thời gian thực](/images/3-BlogsTranslated/kientruc.png)
 
 ## The pub/sub hub
 
