@@ -8,36 +8,39 @@ pre: " <b> 1.1. </b> "
 
 ### Week 1 Objectives:
 
-* Understand the internship roadmap and the role of AWS cloud services in practical system deployment.
-* Set up safer access with IAM users, groups, policies, roles, and billing access delegation.
-* Build foundational networking knowledge with VPC, public/private subnets, routing, security groups, and VPC endpoints.
-* Launch EC2 instances and practice basic application deployment on Linux and Windows environments.
+* Gain a clear understanding of the overall internship roadmap and how AWS services play a fundamental role in building real-world systems.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 1   | - Study IAM core concepts: root account, account ID, groups, policies, roles, and least privilege. <br> - Create an admin group/user, configure an Admin role, create an OperatorUser, and test Switch Role access.                                                                             | 22/04/2026   | 22/04/2026      | <https://000002.awsstudygroup.com/> |
-| 2   | - Study Amazon VPC and AWS Site-to-Site VPN workshop concepts.<br>Design public/private subnets, internet gateway, route tables, bastion access, and VPC endpoint access to AWS services.<br>                                              | 23/04/2026 | 23/04/2026      | <https://000003.awsstudygroup.com/> |
-| 3   | - Practice Amazon EC2 fundamentals. <br> -  Create VPC networking, launch Linux and Windows EC2 instances, configure security groups, install LAMP/Node.js, and deploy a CRUD app. | 24/04/2026 | 24/04/2026      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Troubleshoot compute connectivity and cleanup.<br>- Fix timeout issues by checking Security Groups and OS firewalls, then terminate EC2/VPC resources to prevent cost leakage. <br>                            | 24/04/2026 | 24/04/2026      | <https://000004.awsstudygroup.com/> |
+- Build an access control and security mechanism using IAM (Users, Groups, Policies, and Roles), including configuring Billing permissions.
 
+- Set up a basic cloud networking infrastructure, including VPC, public/private subnets, route tables, security groups, and VPC endpoints.
 
+- Configure and launch Amazon EC2 instances, and deploy a basic application on both Linux and Windows environments.
+
+### Tasks to be Completed This Week:
+
+| Day | Tasks | Start Date | Completion Date | Reference |
+| --- | ----- | ---------- | --------------- | --------- |
+| 1 | - Learn the core IAM components: root account, account ID, groups, policies, roles, and the principle of least privilege.<br>- Practice creating administrative users/groups, configuring an Admin role, creating an OperatorUser account, and testing the Switch Role feature. | 22/04/2026 | 22/04/2026 | <https://000002.awsstudygroup.com/> |
+| 2 | - Study the Amazon VPC architecture and the AWS Site-to-Site VPN workshop.<br>- Practice designing cloud network infrastructure with public/private subnets, Internet Gateway, route tables, Bastion Host connectivity, and VPC Endpoints for accessing internal AWS services. | 23/04/2026 | 23/04/2026 | <https://000003.awsstudygroup.com/> |
+| 3 | - Get familiar with the Amazon EC2 service.<br>- Build a VPC, launch EC2 instances (Linux/Windows), configure Security Groups, install a LAMP/Node.js stack, and deploy a CRUD application to the servers. | 24/04/2026 | 24/04/2026 | <https://000004.awsstudygroup.com/> |
+| 4 | - Practice troubleshooting server connectivity issues and managing AWS resources.<br>- Resolve connection timeout issues by checking Security Groups and operating system firewalls, then clean up resources (terminate EC2 instances and delete VPCs) to optimize costs. | 24/04/2026 | 24/04/2026 | <https://000004.awsstudygroup.com/> |
 
 ### Week 1 Achievements:
 
-* Overview:
+*Overview:
 
-During this week, I focused on getting started with aws, iam, vpc, and ec2. The work was organized from my daily learning notes and adjusted into a weekly internship-report format.
+During the first week, I familiarized myself with the AWS ecosystem, focusing primarily on IAM, Amazon VPC, and Amazon EC2. The content presented here is summarized from my daily worklogs and organized into a weekly report.
 
-* Learned theory:
+* Knowledge Gained:
 
-- Understand the internship roadmap and the role of AWS cloud services in practical system deployment.
-- Set up safer access with IAM users, groups, policies, roles, and billing access delegation.
-- Build foundational networking knowledge with VPC, public/private subnets, routing, security groups, and VPC endpoints.
-- Launch EC2 instances and practice basic application deployment on Linux and Windows environments.
-* Hands-on labs:
+- Developed a comprehensive understanding of the internship roadmap and the practical applications of AWS services.
+- Learned how to manage access control and account security using IAM components.
+- Understood the architecture and configuration of cloud networking with Amazon VPC.
+- Gained practical knowledge of launching, configuring, and managing EC2 instances, as well as deploying basic applications.
 
-- Built the initial AWS account access model without relying on root for daily work.
-- Understood how VPC routing, security groups, bastion access, and endpoints work together.
-- Successfully launched EC2 instances and deployed a simple application environment.
-Practiced systematic troubleshooting and resource cleanup.
+* Hands-on Practice:
+
+- Successfully implemented a secure AWS management environment by avoiding direct use of the root account.
+- Applied VPC routing, Security Groups, Bastion Hosts, and VPC Endpoints to build a secure and functional network architecture.
+- Successfully launched EC2 instances and configured application runtime environments.
+- Developed troubleshooting skills for identifying and resolving system issues while establishing the habit of cleaning up unused resources to avoid unnecessary costs.

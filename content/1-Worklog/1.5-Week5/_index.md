@@ -9,35 +9,35 @@ pre: " <b> 1.5. </b> "
 
 ### Week 5 Objectives:
 
-* Enable centralized security posture monitoring with Security Hub and AWS Config concepts.
-* Understand the migration path from EC2/ASG deployment to ECS/Fargate microservices.
-* Compare VPC Peering and Transit Gateway for inter-VPC connectivity.
-* Create an event-driven cost optimization workflow with CloudWatch, SNS, and Lambda.
+* Learn how to strengthen security monitoring by using AWS Security Hub and AWS Config.
+* Understand the process of deploying containerized applications with a microservices architecture on Amazon ECS and AWS Fargate.
+* Compare VPC Peering and Transit Gateway to identify the most suitable solution for connecting multiple VPCs.
+* Practice building an event-driven automation workflow for AWS cost optimization using CloudWatch, SNS, and Lambda.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 1   | - Study AWS Security Hub and AWS Config.<br> - Enable Security Hub CSPM, review AWS Foundational Security Best Practices, CIS, and PCI DSS standards.                                                                                                  | 04/05/2026 | 04/05/2026      | <https://000018.awsstudygroup.com/> |
-| 2   | - Design ECS microservices deployment. <br> - Study Docker packaging, ECR images, Fargate tasks, task definitions, private subnets, NAT Gateway, and service separation. <br>                                              | 05/05/2026 | 05/05/2026      | <https://000016.awsstudygroup.com/><https://000067.awsstudygroup.com/> |
-| 3   | - Set up manual VPC Peering. <br> - Create two non-overlapping VPCs, configure routes/security groups, test private connectivity, and learn peering limitations. | 06/05/2026 | 06/05/2026      | <https://000019.awsstudygroup.com/> |
-| 4   | - Build Transit Gateway hub-and-spoke networking.<br> - Connect four VPCs through TGW attachments, fix missing propagation, verify inter-VPC ping, and cleanup high-cost TGW resources.<br>                            | 06/05/2026 | 06/05/2026      | <https://000020.awsstudygroup.com/> |\
-| 5   | - Optimize EC2 cost with Lambda automation.<br> - Use VPC Flow Logs, CloudWatch Metric Filter, Alarm, SNS, and Lambda boto3 to stop an EC2 instance after detected ICMP traffic.<br>                            | 07/05/2026 | 08/05/2026      | <https://000022.awsstudygroup.com/><https://000074.awsstudygroup.com/> |
-
+| Day | Task                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                            |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1   | - Study AWS Security Hub and AWS Config.<br> - Enable Security Hub CSPM and explore AWS Foundational Security Best Practices, CIS Benchmark, and PCI DSS standards to evaluate the security posture of an AWS environment. | 04/05/2026 | 04/05/2026 | <https://000018.awsstudygroup.com/> |
+| 2   | - Explore application deployment with Amazon ECS. <br> - Practice packaging applications with Docker, storing container images in Amazon ECR, deploying Fargate tasks, configuring Task Definitions, Private Subnets, NAT Gateway, and separating services.<br> | 05/05/2026 | 05/05/2026 | <https://000016.awsstudygroup.com/><https://000067.awsstudygroup.com/> |
+| 3   | - Practice configuring VPC Peering. <br> - Create two VPCs with non-overlapping CIDR blocks, configure Route Tables and Security Groups, verify private connectivity, and evaluate the limitations of VPC Peering. | 06/05/2026 | 06/05/2026 | <https://000019.awsstudygroup.com/> |
+| 4   | - Build a hub-and-spoke network architecture using Transit Gateway.<br> - Connect four VPCs through Transit Gateway Attachments, troubleshoot missing route propagation, verify inter-VPC connectivity, and clean up Transit Gateway resources after testing to optimize costs.<br> | 06/05/2026 | 06/05/2026 | <https://000020.awsstudygroup.com/> |\
+| 5   | - Build an automated EC2 cost optimization workflow using AWS Lambda.<br> - Use VPC Flow Logs, CloudWatch Metric Filters, CloudWatch Alarms, SNS, and Lambda (boto3) to automatically stop EC2 instances when ICMP traffic is detected.<br> | 07/05/2026 | 08/05/2026 | <https://000022.awsstudygroup.com/><https://000074.awsstudygroup.com/> |
 
 ### Week 5 Achievements:
 
 * Overview:
 
-During this week, I focused on security posture, containers, and inter-vpc networking. The work was organized from my daily learning notes and adjusted into a weekly internship-report format.
+This week, I focused on improving cloud security, deploying containerized applications, and implementing networking solutions across multiple VPCs. The content below summarizes my daily worklogs and has been organized into a weekly internship report.
 
-* Learned theory:
+* Knowledge Acquired:
 
-- Enable centralized security posture monitoring with Security Hub and AWS Config concepts.
-- Understand the migration path from EC2/ASG deployment to ECS/Fargate microservices.
-- Compare VPC Peering and Transit Gateway for inter-VPC connectivity.
-- Create an event-driven cost optimization workflow with CloudWatch, SNS, and Lambda.
-* Hands-on labs:
+- Learned how to use AWS Security Hub and AWS Config to monitor and assess the security posture of AWS infrastructure.
+- Gained an understanding of deploying containerized applications with a microservices architecture using Amazon ECS and AWS Fargate.
+- Understood the strengths, limitations, and appropriate use cases of VPC Peering and Transit Gateway.
+- Learned how to build event-driven automation workflows for monitoring infrastructure and optimizing AWS operational costs.
 
-- Connected security monitoring, container architecture, networking scale, and - automation into one practical week.
-- Understood when to use VPC Peering versus Transit Gateway.
-- Implemented an event-driven automation workflow from logs to Lambda action.
+* Hands-on Practice:
+
+- Successfully integrated security, containerization, networking, and automation services within a single hands-on environment.
+- Configured both VPC Peering and Transit Gateway to connect multiple VPCs using different networking architectures.
+- Built an event-driven workflow that collects logs, detects specific events, and triggers AWS Lambda functions to perform automated actions.

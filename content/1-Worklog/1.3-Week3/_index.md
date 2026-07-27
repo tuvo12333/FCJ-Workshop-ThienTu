@@ -9,37 +9,34 @@ pre: " <b> 1.3. </b> "
 
 ### Week 3 Objectives:
 
-* Set financial guardrails to avoid unexpected AWS charges.
-* Learn the difference between cost budgets, usage budgets, RI budgets, and Savings Plans budgets.
-* Build observability skills with CloudWatch metrics, logs, alarms, dashboards, and SNS.
-* Practice interpreting metrics with search expressions, metric math, and dashboard widgets.
+* Establish financial safeguards to prevent unexpected AWS charges.
+* Understand the differences between Cost Budget, Usage Budget, RI Budget, and Savings Plans Budget.
+* Develop system monitoring skills using CloudWatch metrics, logs, alarms, dashboards, and SNS.
+* Practice analyzing metrics with search expressions, metric math, and dashboard widgets.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 1   | - Create AWS Cost Budget. <br> - Configure all-services unblended cost monitoring and multi-level alerts at 50%, 80%, and 100% thresholds.                                                                     | 29/04/2026 | 29/04/2026      | <https://000007.awsstudygroup.com/> |
-| 2   | - Create AWS Usage Budget<br> - Track EC2 running hours to protect Free Tier limits and understand hidden cost risks from forgotten resources.<br>                                              | 30/04/2026 | 30/04/2026      | <https://000007.awsstudygroup.com/> |
-| 3   | - Study RI Budget and Savings Plans Budget.<br> - Compare reservation utilization monitoring with compute commitment monitoring for enterprise cost governance. | 31/04/2026 | 31/04/2026      | <https://0000042.awsstudygroup.com/> |
-| 4   | - Begin Amazon CloudWatch Workshop. <br> - Deploy EC2 infrastructure through CloudFormation and identify region/vCPU quota issues during stack creation.<br>                            | 01/05/2026 | 01/05/2026      | <https://000008.awsstudygroup.com/> <https://0000036.awsstudygroup.com/>  |
-
-
+### Tasks to be completed this week:
+| Day | Tasks                                                                                                                                                                                   | Start Date | Completion Date | Reference                            |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1   | - Create an AWS Cost Budget. <br> - Configure monitoring for the total unblended cost across AWS services and set multiple alert thresholds at 50%, 80%, and 100%. | 29/04/2026 | 29/04/2026 | <https://000007.awsstudygroup.com/> |
+| 2   | - Create an AWS Usage Budget.<br> - Monitor EC2 running hours to stay within the Free Tier and understand the hidden cost risks of leaving unused resources running.<br> | 30/04/2026 | 30/04/2026 | <https://000007.awsstudygroup.com/> |
+| 3   | - Explore RI Budget and Savings Plans Budget.<br> - Compare reservation utilization monitoring with compute commitment monitoring in enterprise cost management. | 31/04/2026 | 31/04/2026 | <https://0000042.awsstudygroup.com/> |
+| 4   | - Begin the Amazon CloudWatch Workshop. <br> - Deploy EC2 infrastructure using CloudFormation and identify issues related to Region selection and vCPU quotas during stack creation.<br> | 01/05/2026 | 01/05/2026 | <https://000008.awsstudygroup.com/> <https://0000036.awsstudygroup.com/> |
 
 ### Week 3 Achievements:
 
 * Overview:
 
-During this week, I focused on cost guardrails and observability basics. The work was organized from my daily learning notes and adjusted into a weekly internship-report format.
+This week focused on AWS cost management and system observability. The content below summarizes my daily worklogs and consolidates them into a weekly report.
 
-* Learned theory:
+* Knowledge Acquired:
 
-- Set financial guardrails to avoid unexpected AWS charges.
-- Learn the difference between cost budgets, usage budgets, RI budgets, and Savings Plans budgets.
-- Build observability skills with CloudWatch metrics, logs, alarms, dashboards, and SNS.
-- Practice interpreting metrics with search expressions, metric math, and dashboard widgets.
+- Learned how to implement financial controls to minimize the risk of unexpected AWS expenses.
+- Gained a clear understanding of the different purposes of Cost Budget, Usage Budget, RI Budget, and Savings Plans Budget.
+- Explored the core monitoring capabilities of Amazon CloudWatch, including metrics, logs, alarms, dashboards, and SNS notifications.
+- Practiced interpreting CloudWatch metrics using search expressions, metric math, and dashboard widgets.
 
-* Hands-on labs:
+* Hands-on Practice:
 
-- Configured budget alerts for both cost and usage perspectives.
-- Understood why financial guardrails must be created before heavy lab work.
-- Started working with CloudWatch metrics and learned to troubleshoot infrastructure deployment constraints.
-
+- Successfully configured budget alerts based on both cost and service usage.
+- Understood the importance of setting up financial guardrails before performing multiple AWS labs.
+- Began working with Amazon CloudWatch metrics and learned how to troubleshoot deployment limitations such as Region availability and vCPU quota restrictions.
