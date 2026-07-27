@@ -45,6 +45,8 @@ Amazon DocumentDB: Quản lý toàn bộ danh mục phim ảnh với các thuộ
 
 Amazon OpenSearch Service: Mang lại trải nghiệm tìm kiếm tức thời cho người dùng cuối, dù họ gõ sai chính tả hay tìm kiếm theo những cụm từ phức tạp.
 
+![alt text](/images/3-BlogsTranslated/3.1-Blog1/ezatk_decision_OS_tree.png)
+
 # Kết Luận 
 Việc ép một công cụ cơ sở dữ liệu phải làm mọi thứ với JSON là một tư duy đã cũ. Bằng cách thiết kế một kiến trúc phân tách, sử dụng đúng dịch vụ AWS cho đúng loại khối lượng công việc và duy trì sự đồng bộ hóa liền mạch, bạn sẽ sở hữu một hệ thống dữ liệu JSON linh hoạt, dễ dàng mở rộng và tối ưu hóa được cả về chi phí lẫn hiệu năng.
 

@@ -46,6 +46,7 @@ Amazon DynamoDB: Handles high-volume event tracking, user activity logging, and 
 Amazon DocumentDB: Manages the entire movie catalog with nested and continuously evolving attributes (directors, cast members, subgenres, and more).
 
 Amazon OpenSearch Service: Delivers an instant search experience for end users, even when queries contain spelling mistakes or complex search phrases.
+![alt text](/images/3-BlogsTranslated/3.1-Blog1/ezatk_decision_OS_tree-1.png)
 
 # Conclusion
 
