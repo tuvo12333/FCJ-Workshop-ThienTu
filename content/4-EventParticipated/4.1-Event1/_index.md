@@ -57,6 +57,7 @@ The core academic focus centered on methodologies that stimulate the reasoning c
 - **Practical Project Insights:** Listening to first-hand experiences from Mr. Nguyen Tuan Thinh (DevOps/Cloud Engineer) bridged the gap between university knowledge and actual market demands. The open QA environment highly encouraged active discussion and critical thinking.
 
 #### Event Gallery
-* No images available to display.
+![alt text](/images/4-EventParticipated/4.1-Event1/4de64a68-8178-45e8-995d-416db84e952e.png)
+![alt text](/images/4-EventParticipated/4.1-Event1/15cb738e-f868-47a8-9482-f69e6a79b3c0-1.png)
 
 > Overall, the event not only provided deep technical insights but also reshaped my mindset regarding modern application design, cloud native systems, and effective cross-functional team collaboration.
