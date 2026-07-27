@@ -32,4 +32,4 @@ pre: " <b> 4.2. </b> "
 
 > Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
 
-(113.png)
+![](/images/4-EventParticipated/4.2-Event2/113.png)

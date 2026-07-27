@@ -28,4 +28,6 @@ pre: " <b> 4.2. </b> "
 -The presenters also provided a detailed overview of the entire product development process, including idea generation, solution architecture, workflow, technologies used, and the practical lessons learned while developing products under significant time pressure.
 
 > Overall, the event not only provided valuable technical knowledge but also changed the way I think about application design, system modernization, and effective collaboration across teams.
-![](113-1.png)
+
+
+![](/images/4-EventParticipated/4.2-Event2/113-1.png)
