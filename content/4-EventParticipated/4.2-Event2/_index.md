@@ -10,16 +10,15 @@ pre: " <b> 4.2. </b> "
 
 ### Event Purpose
 
-- Share effective learning methodologies and student insights.
-- Introduce the upcoming hackathon competition.
+- Colleagues from the office participated in the hackathon and shared their experiences at the event.
+- Their experiences regarding the competition and selecting a topic to tackle.
 
 ### Speaker List
 
 - **Students from various universities**
-- **The FPT Challenger student team**
+- **Mr. Nguyễn Gia Hưng** 
+### Key Highlights
 
-### Inspiration from the FPT Challenger Team
-
-
+### It was inspiring to hear the FPT team share their hackathon experiences
 
 > Overall, this meetup went beyond delivering technical knowledge; it fundamentally reshaped my mindset toward modern application design, system modernization, and effective cross-functional collaboration.

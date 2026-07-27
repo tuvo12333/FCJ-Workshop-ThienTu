@@ -7,115 +7,62 @@ pre: " <b> 3.3. </b> "
 ---
 
 
-# Amazon DynamoDB - Chọn Chế Độ Throughput Phù Hợp Cho Ứng Dụng
 
-## Giới thiệu
+Quy trình **Know Your Customer (KYC)** từ lâu đã vượt ra ngoài một chiếc hộp kiểm tra tuân thủ thông thường để trở thành trụ cột bảo mật cốt lõi cho mọi tổ chức tài chính. Thế nhưng, trong một kỷ nguyên số hóa với khối lượng giao dịch khổng lồ và kỳ vọng onboarding tức thì từ khách hàng, các hệ thống KYC nguyên khối (monolithic) truyền thống đang bộc lộ rõ những hạn chế: độ trễ cao, xử lý theo lô (batch processing) chậm chạp và chi phí vận hành đắt đỏ.
 
-Trong quá trình phát triển ứng dụng trên AWS, việc lựa chọn cơ sở dữ liệu phù hợp ảnh hưởng trực tiếp đến hiệu năng, khả năng mở rộng và chi phí vận hành. Với những ứng dụng có lưu lượng lớn hoặc thay đổi liên tục như thương mại điện tử, game online hay hệ thống serverless, Amazon DynamoDB là một lựa chọn phổ biến.
+Để giải quyết bài toán này, sự kết hợp giữa **giải pháp serverless của AWS** và **AI tác nhân (Agentic AI)** đang mở ra một cuộc cách mạng toàn diện, giúp chuyển đổi các hoạt động tuân thủ sang thời gian thực với độ chính xác và khả năng mở rộng vượt trội.
 
-DynamoDB là dịch vụ NoSQL được AWS quản lý hoàn toàn. Người dùng không cần cài đặt máy chủ, bảo trì hay mở rộng hạ tầng. Tuy nhiên, người phát triển cần hiểu rõ cách DynamoDB xử lý throughput để chọn chế độ phù hợp.
+## 1. Nút thắt cổ chai của hệ thống KYC truyền thống
 
+Các hệ thống KYC cũ được thiết kế cho một bối cảnh hoàn toàn khác—nơi khối lượng giao dịch thấp hơn và các mối đe dọa ít tinh vi hơn. Ngày nay, việc phụ thuộc vào thu thập tài liệu thủ công và kiểm tra rời rạc tạo ra nhiều hệ lụy:
 
+* **Onboarding chậm trễ:** Thời gian xác thực thông thường kéo dài từ 3 đến 5 ngày, làm giảm tỷ lệ chuyển đổi khách hàng.
+* **Rủi ro vận hành và pháp lý:** Việc xử lý thủ công trên nhiều khu vực pháp lý dẫn đến sự thiếu nhất quán trong việc tuân thủ các quy định khắt khe như AML, CTF, BSA, hay các hướng dẫn từ FATF và MAS.
+* **Thiếu khả năng thích ứng:** Các hệ thống cũ không thể tích hợp mượt mà với AI hiện đại để phát hiện các hình thức gian lận mới nổi mà không cần cấu hình lại thủ công.
 
----
+## 2. Kiến trúc giải pháp gốc đám mây (Cloud-Native) với AI tác nhân
 
-## Capacity Mode trong DynamoDB
+Giải pháp hiện đại hóa quy trình KYC phá vỡ các luồng công việc cứng nhắc thành các chức năng kinh doanh linh hoạt, độc lập. Hệ thống có khả năng xử lý các yêu cầu KYC khối lượng lớn một cách an toàn **trong vòng chưa đầy 5 phút**, duy trì các tiêu chuẩn bảo mật nghiêm ngặt đối với dữ liệu nhận dạng cá nhân (PII).
 
-Khi tạo bảng DynamoDB, người dùng cần chọn Capacity Mode. Đây là cơ chế quản lý tài nguyên để xử lý yêu cầu đọc và ghi.
+### Trái tim kiến trúc: Amazon Bedrock AgentCore
+Môi trường thời gian chạy **AgentCore Runtime** đóng vai trò điều phối cốt lõi, quản lý phiên làm việc, chia sẻ bộ nhớ và bảo toàn ngữ cảnh xuyên suốt các tiến trình xử lý không đồng bộ. Thay vì dựa vào quy tắc tĩnh, **Tác nhân Giám sát Điều phối KYC (KYC Orchestration Supervisor Agent)** sẽ phân tích động các đặc điểm của từng hồ sơ để xây dựng kế hoạch thực thi tối ưu.
 
-DynamoDB cung cấp hai chế độ chính:
+Điểm sáng của mô hình này nằm ở **hệ thống chấm điểm tin cậy (Confidence Scoring)**:
+* **Độ tin cậy cao (>95%):** Phê duyệt tự động ngay lập tức.
+* **Độ tin cậy trung bình (75% - 95%):** Kích hoạt quy trình xác minh bổ sung.
+* **Độ tin cậy thấp (<75%):** Leo thang lên chuyên gia đánh giá thủ công với đầy đủ ngữ cảnh phân tích.
 
-On-Demand Capacity
-Provisioned Capacity
-Hai chế độ này đều phục vụ mục tiêu xử lý dữ liệu nhanh chóng nhưng khác nhau về cách hoạt động và mô hình tính phí.
+## 3. Năm mảnh ghép chuyên biệt trong hệ thống AI tác nhân
 
----
+Tác nhân giám sát ủy quyền công việc cho 5 tác nhân phụ (sub-agents) chuyên sâu, mỗi tác nhân sử dụng các nền tảng mô hình nền tảng (Foundation Models) tối ưu trên **Amazon Bedrock**:
 
-## On-Demand Capacity
+* **Tác nhân Xác minh danh tính (Identity Verification):** Xác thực thông tin khách hàng dựa trên danh sách theo dõi, cơ sở dữ liệu trừng phạt và xử lý các biến thể tên bằng NLP.
+* **Tác nhân Phân tích tài liệu (Document Analysis):** Trích xuất dữ liệu qua OCR, xử lý ảnh chất lượng thấp, đa ngôn ngữ và phát hiện tài liệu giả mạo thông qua phân tích hình mờ và bảo mật.
+* **Tác nhân Phát hiện gian lận (Fraud Detection):** Phát hiện các mẫu đáng ngờ (nhiều đơn đăng ký từ một địa chỉ IP), so khớp tương đồng ngữ nghĩa với các vụ gian lận lịch sử và duy trì điểm rủi ro động.
+* **Tác nhân Tuân thủ & Rủi ro (Compliance & Risk):** Diễn giải các quy định theo từng khu vực pháp lý, chuyển hóa thành hành động xác thực cụ thể và tạo nhật ký kiểm toán minh bạch.
+* **Tác nhân Trải nghiệm khách hàng (Customer Experience):** Tối ưu hóa hành trình onboarding, giảm tỷ lệ bỏ ngang đơn đăng ký và xác định cơ hội bán thêm phù hợp.
 
-On-Demand Capacity là chế độ trong đó AWS tự động quản lý khả năng xử lý của bảng DynamoDB. Người dùng không cần khai báo trước số lượng Read Capacity Unit (RCU) hay Write Capacity Unit (WCU). DynamoDB sẽ tự mở rộng hoặc thu hẹp theo lưu lượng thực tế.
+## 4. Xương sống công nghệ: AWS Serverless & Event-Driven
 
-Chế độ này phù hợp với ứng dụng mới phát triển hoặc có lưu lượng khó dự đoán. Ví dụ, một startup vừa ra mắt ứng dụng đặt đồ ăn sẽ khó biết chính xác số lượng người dùng trong những ngày đầu. On-Demand giúp hệ thống đáp ứng khi traffic tăng mà không cần cấu hình trước.
+Sức mạnh vận hành của hệ thống đến từ các dịch vụ đám mây hàng đầu của AWS:
 
----
+* **Amazon Managed Streaming for Apache Kafka (Amazon MSK):** Đảm nhận vai trò truyền thông hướng sự kiện (event-driven) hai chiều. Các topic đầu vào thu thập đơn đăng ký và tài liệu, trong khi các topic đầu ra xuất bản quyết định KYC và cảnh báo gian lận.
+* **AWS Lambda:** Cung cấp khả năng tính toán serverless co giãn theo nhu cầu, đóng vai trò là lớp tích hợp tiêu thụ sự kiện từ MSK và gọi các tác nhân AI một cách bất đồng bộ.
+* **Cơ sở tri thức thông minh (RAG):** Kết hợp **Amazon S3** (lưu trữ tài liệu chính sách, quy định) và **Amazon OpenSearch Serverless** (tìm kiếm vector embedding) giúp các tác nhân AI đưa ra quyết định dựa trên dữ liệu thực tế, chuẩn xác và có thể giải thích được thay vì phỏng đoán.
+* **Amazon DynamoDB:** Kho quyết định thời gian thực cung cấp quyền truy cập dữ liệu cấu trúc dưới mili giây.
 
-## Ưu điểm
+## 5. Giá trị vượt trội mang lại cho các tổ chức tài chính
 
-Dễ triển khai, không cần tính toán RCU/WCU.
-Tự động mở rộng theo nhu cầu thực tế.
-Chỉ trả tiền theo số request đọc và ghi thực tế.
-Phù hợp với kiến trúc serverless, Lambda và API Gateway.
+Việc chuyển đổi sang kiến trúc KYC hỗ trợ bởi AI tác nhân và serverless mang lại những bước tiến mang tính bước ngoặt:
 
----
+> "Giảm thời gian xác thực KYC từ 3-5 ngày xuống còn chưa đầy 5 phút cho các trường hợp tiêu chuẩn, đồng thời giúp mỗi chuyên gia tuân thủ xử lý gấp 4 lần khối lượng công việc hiện tại."
 
-## Hạn chế
+* **Khả năng mở rộng linh hoạt:** Xử lý hàng nghìn yêu cầu đồng thời mà không nghẽn cổ chai nhờ mô hình serverless trả theo mức sử dụng.
+* **Tự động hóa thông minh:** Giảm tải công việc thủ công, cho phép đội ngũ nhân sự tập trung vào các trường hợp phức tạp đòi hỏi tư duy con người.
+* **Tuân thủ vững chắc:** Nhật ký kiểm toán toàn diện kết hợp khả năng giải thích quyết định của AI giúp các tổ chức sẵn sàng vượt qua mọi đợt kiểm tra quy định khắt khe nhất.
 
-Nếu hệ thống luôn có lưu lượng lớn và ổn định, On-Demand có thể đắt hơn Provisioned Capacity. Ngoài ra, vì chi phí phụ thuộc vào request thực tế nên ngân sách có thể khó dự đoán hơn.
+## Lời kết
 
----
+Hiện đại hóa KYC không chỉ là một bài toán nâng cấp công nghệ mà là chiến lược sống còn giúp các tổ chức tài chính bứt phá trong kỷ nguyên số. Sự kết hợp giữa **Amazon Bedrock**, **Amazon MSK** và **AI tác nhân** tạo ra một hệ sinh thái tự động hóa thông minh, vừa đảm bảo tuân thủ pháp lý ngặt nghèo, vừa mang lại trải nghiệm onboarding mượt mà, tức thì cho khách hàng.
 
-## Khi nào nên dùng On-Demand?
-
-On-Demand phù hợp cho ứng dụng mới, hệ thống đang thử nghiệm, startup chưa có dữ liệu dự báo, website flash sale, game online có traffic theo sự kiện và các hệ thống serverless.
-
----
-
-## Provisioned Capacity
-
-Provisioned Capacity là chế độ người dùng khai báo trước lượng tài nguyên mà bảng DynamoDB sẽ sử dụng.
-
-Read Capacity Unit (RCU): đơn vị đo khả năng đọc dữ liệu.
-Write Capacity Unit (WCU): đơn vị đo khả năng ghi dữ liệu.
-Ví dụ, nếu một website xử lý 500 đơn hàng mỗi giây và mỗi đơn hàng khoảng 1 KB, bảng cần tối thiểu 500 WCU để ghi dữ liệu ổn định.
-
----
-
-## Auto Scaling
-
-Provisioned Capacity có thể kết hợp với Auto Scaling. Khi mức sử dụng vượt ngưỡng như 70%, DynamoDB có thể tự tăng RCU/WCU. Khi lưu lượng giảm, hệ thống tự giảm capacity để tiết kiệm chi phí.
-
----
-
-## Ưu điểm
-
-Tiết kiệm chi phí nếu lưu lượng ổn định.
-Chủ động kiểm soát tài nguyên.
-Phù hợp với hệ thống lớn như ERP, CRM, quản lý kho hoặc API nội bộ.
-
----
-
-## Hạn chế
-
-Nếu cấu hình quá thấp, DynamoDB có thể bị throttling. Nếu cấu hình quá cao nhưng sử dụng ít, doanh nghiệp vẫn phải trả tiền cho phần capacity không dùng đến. Việc theo dõi CloudWatch và điều chỉnh capacity cũng đòi hỏi kinh nghiệm vận hành.
-
----
-
-## Warm Throughput
-
-Warm Throughput giúp DynamoDB chuẩn bị sẵn năng lực xử lý cho các đợt tăng lưu lượng lớn. Tính năng này hữu ích cho flash sale, hệ thống bán vé, game online ra mắt phiên bản mới hoặc chiến dịch marketing có thời điểm truy cập cao.
-
----
-
-## Throttling và Hot Partition
-
-Throttling xảy ra khi lượng request vượt quá khả năng xử lý hiện tại của bảng hoặc từng partition. Ví dụ, bảng chỉ có 500 WCU nhưng ứng dụng gửi 2.000 yêu cầu ghi mỗi giây, DynamoDB sẽ giới hạn tốc độ xử lý.
-
-Hot Partition xảy ra khi phần lớn request tập trung vào một partition key duy nhất. Để tránh tình trạng này, cần thiết kế partition key sao cho dữ liệu được phân bố đều.
-
----
-
-## Nên chọn Capacity Mode nào?
-
-Nên chọn On-Demand Capacity khi ứng dụng mới phát triển, chưa dự đoán được người dùng, có traffic đột biến hoặc xây dựng theo kiến trúc serverless.
-
-Nên chọn Provisioned Capacity khi hệ thống đã ổn định, có dữ liệu lịch sử để dự đoán lưu lượng, muốn tối ưu chi phí dài hạn và có đội ngũ vận hành theo dõi capacity.
-
-Trong thực tế, nhiều doanh nghiệp bắt đầu với On-Demand để giảm công sức quản trị. Khi ứng dụng phát triển và lưu lượng ổn định hơn, họ chuyển sang Provisioned Capacity để tiết kiệm chi phí.
-
----
-
-## Kết luận
-
-Throughput là yếu tố quan trọng khi làm việc với DynamoDB vì nó ảnh hưởng đến hiệu năng, khả năng mở rộng và chi phí. On-Demand đơn giản và linh hoạt, còn Provisioned giúp kiểm soát chi phí tốt hơn với workload ổn định.
-
-Bên cạnh Capacity Mode, các khái niệm như Warm Throughput, Throttling và Hot Partition cũng cho thấy rằng thiết kế partition key, theo dõi CloudWatch và sử dụng Auto Scaling đúng cách là điều cần thiết để hệ thống DynamoDB vận hành hiệu quả.
+*** Nguồn tham khảo ***  <https://awsstudygroup.com/2026/05/26/hien-dai-hoa-kyc-voi-cac-giai-phap-serverless-cua-aws-va-ai-agent-cho-dich-vu-tai-chinh/>

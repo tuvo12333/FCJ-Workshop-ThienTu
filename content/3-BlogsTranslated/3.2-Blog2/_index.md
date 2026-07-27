@@ -6,86 +6,43 @@ chapter: false
 pre: " <b> 3.2. </b> "
 ---
 
-# A Unified JSON Data Search System on AWS
-**Introduction**
-Modern applications such as streaming platforms, e-commerce systems, and large data products rarely store all data in a single database. Some data requires low-latency access, some requires strong transactional consistency, and other data is stored for analytics or long-term reporting.
+### Building the Digital Future: How Governments Deliver National Data Securely and at Scale
+# National data—from demographic information, public healthcare records, weather data, to geospatial and cyber mapping data—is becoming a "gold mine" for driving innovation, scientific research, and socio-economic development. However, expanding access to this massive volume of data for citizens, businesses, and organizations presents a significant challenge for government agencies: How can they share data at a massive scale while ensuring absolute security and privacy?
 
-This raises an important question: how can users search across many data sources quickly and accurately?
+# The Challenges of Traditional Government Systems
 
-AWS solves this pattern by combining purpose-built data services with Amazon OpenSearch Service to create a unified search layer.
----
+In the past, when government agencies wanted to publish Open Data, they typically faced three major obstacles:
 
-## Why not use only one database?
+-Legacy Infrastructure: Existing systems were unable to handle tens of thousands of simultaneous users downloading or accessing large datasets.
 
-When I first started building web applications, I thought a single database such as MySQL could store everything: users, products, orders, activity history, and logs. After studying AWS and large-scale system architectures, I realized that this approach works only for small projects.
+-Security Risks: The fine line between "open data" and the accidental exposure of personal or sensitive information made many agencies reluctant to share their data.
 
-As data grows to millions or billions of records, one database becomes a limitation for performance, scalability, and operational cost. Each data type should use the tool that fits it best:
+-High Operational Costs: Building and maintaining physical servers solely for storing and distributing public datasets was extremely expensive.
 
-DynamoDB is suitable for fast key-value and real-time access.
-Aurora PostgreSQL is suitable for transactional data.
-DocumentDB is suitable for flexible JSON documents.
-S3 is suitable for large-scale storage and data lakes.
-Redshift is suitable for analytics and reporting.
+### The AWS Solution: More Secure, More Scalable
 
----
+To address these challenges, government organizations around the world are increasingly adopting cloud computing. An AWS-based architecture provides an ideal blueprint for distributing national data securely and efficiently.
 
-## Overall architecture
+# 1. Massive Storage with a Data Lake (Amazon S3)
 
-The system has two main layers.
+Instead of relying on traditional on-premises data centers, governments can consolidate all data into a centralized Data Lake built on Amazon S3. Amazon S3 provides storage with **99.999999999% (11 nines) durability** at a low cost. Whether the data is structured (tables and databases) or unstructured (satellite imagery, PDF documents, etc.), Amazon S3 can store it while scaling virtually without limits.
 
-The data storage layer includes Amazon DynamoDB, Amazon Aurora PostgreSQL, Amazon DocumentDB, Amazon S3, and Amazon Redshift. Each service stores the type of data it handles best.
+# 2. Fine-Grained Access Control with Simplified Security (AWS Lake Formation)
 
-The search layer uses Amazon OpenSearch Service. Searchable data is synchronized into OpenSearch so users can query one unified search endpoint instead of searching each source database separately.
+Making data publicly available does not mean everyone should have unrestricted access to everything. With AWS Lake Formation, government data administrators can enforce fine-grained security policies down to the **column level** and **row level**.
 
----
+For example, healthcare datasets can expose aggregated statistical information while automatically masking columns containing names, addresses, or personally identifiable information (PII) for general users.
 
-## AWS service roles
+# 3. Seamless Data Distribution Through AWS Data Exchange
 
-DynamoDB is a low-latency NoSQL database with high scalability. It fits user profiles, activity history, and real-time application state. For example, a streaming platform can store a user’s current movie and resume timestamp so playback can continue quickly on another device.
----
+Instead of building and maintaining complex public data portals, governments can leverage AWS Data Exchange or participate in the Registry of Open Data on AWS. Researchers, startups, and students can subscribe to datasets, access them directly through APIs, and integrate them into their own environments without placing additional load on government infrastructure.
 
-## Amazon Aurora PostgreSQL
+# 4. Encryption and Comprehensive Compliance Monitoring
 
-Aurora PostgreSQL is used for payments, orders, and other transactional information. Because it supports ACID transactions, Aurora helps keep business data consistent and reliable.
+Security remains the highest priority for national data. Services such as AWS Key Management Service (KMS) ensure that data is always encrypted—both at rest and in transit. Meanwhile, every access request and download is comprehensively logged through AWS CloudTrail, enabling cybersecurity teams to audit activity and detect suspicious behavior immediately.
 
----
+### Conclusion
 
-## Amazon DocumentDB
+National data delivers its greatest value when it can be securely shared with the people and organizations that need it. With the support of AWS services, governments can confidently open access to data at an unprecedented scale while maintaining a strong security foundation to protect sensitive national information. The future of a transparent, data-driven digital government begins with the secure flow of information.
 
-DocumentDB stores flexible JSON data such as product information, metadata, and content with changing attributes. This is useful in e-commerce, where one product may have completely different attributes from another.
-
----
-
-## Amazon S3
-
-Amazon S3 acts as a data lake, log archive, and backup store. It provides low-cost storage with virtually unlimited scalability and is often the foundation for analytics pipelines.
-
----
-
-## Amazon Redshift
-
-Amazon Redshift handles large-scale analytical workloads. With the SUPER data type and PartiQL, Redshift can query complex JSON structures efficiently. In a streaming platform, Redshift can analyze billions of play, pause, and skip events from S3, calculate trend scores, and export aggregated results back to the search layer.
-
----
-
-## Amazon OpenSearch Service
-
-OpenSearch is the central search component. It supports full-text search, fuzzy search, auto suggestion, vector search, and AI search. For example, when a user searches for a product with incomplete or imperfect keywords, OpenSearch can still return relevant results.
-
----
-
-## Synchronizing data into OpenSearch
-
-OpenSearch Ingestion (OSI) collects, transforms, and synchronizes data into Amazon OpenSearch Service. The synchronization process usually has two stages:
-
-Initial Load: load the baseline data from DynamoDB, Aurora, DocumentDB, or S3.
-Change Data Capture: after the baseline is created, synchronize only new changes.
-This design reduces load on source systems, lowers cost, and keeps search data close to real time.
-
----
-
-## Conclusion
-
-Combining DynamoDB, Aurora, DocumentDB, S3, Redshift, and OpenSearch creates a modern data architecture that is flexible and scalable. Amazon OpenSearch Service acts as the unified search layer that connects data from multiple systems and gives users a powerful search experience.
-
-Reference: <https://awsstudygroup.com/2026/05/20/cach-xay-dung-giai-phap-tim-kiem-json-hop-nhat-trong-aws/>
+**Reference:** <https://awsstudygroup.com/2026/01/14/cach-cac-chinh-phu-co-the-cung-cap-du-lieu-quoc-gia-an-toan-hon-va-o-quy-mo-lon/>
