@@ -23,3 +23,14 @@ Trong bài workshop này, bạn sẽ học cách thiết lập, cấu hình và 
 4. [Triển khai Backend & API Gateway](5.4-Backend-apigateway/)
 5. [Triển khai Frontend & Hosting](5.5-Frontend-deployment/)
 6. [Kiểm thử & Dọn dẹp](5.6-Testing-cleanup/)
+
+### Live Product URL & Demo Accounts
+**Live Web Product URL (CloudFront CDN)**: https://d3th0yl82lu593.cloudfront.net/
+
+# Test Account & Roles
+
+| Nhóm quyền | Email đăng nhập | Mật khẩu | Chức năng quan sát |
+| --- | --- | --- | --- |
+| Admin | admin@example.com | Abc12345! | Thấy toàn bộ chức năng (gồm quản lý giáo viên, log, tài khoản). |
+| Giáo viên / Cán bộ | staff@example.com | Abc12345! | Thấy menu Sinh viên, Điểm số, Tài liệu học tập, Hồ sơ, Thông báo. (Ẩn phần cấu hình Admin và Giáo viên). |
+| Sinh viên | student@example.com | Abc12345! | Chỉ thấy menu Tổng quan, Hồ sơ cá nhân, Xem điểm số, Tài liệu học tập và Thông báo. (Ẩn toàn bộ mục quản lý còn lại). |

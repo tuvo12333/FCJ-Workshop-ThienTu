@@ -23,3 +23,14 @@ In this workshop, you will learn how to build, configure, and deploy a complete 
 4. [Backend & API Gateway](5.4-Backend-apigateway/)
 5. [Frontend & Hosting](5.5-Frontend-deployment/)
 6. [Testing & Clean up](5.6-Testing-cleanup/)
+
+### Live Product URL & Demo Accounts
+**Live Web Product URL (CloudFront CDN)**: https://d3th0yl82lu593.cloudfront.net/
+
+# Test Account & Roles
+
+| Role | Login Email | Password | Allowed Functions |
+| --- | --- | --- | --- |
+| Admin | admin@example.com | Abc12345! | View all functions (including teacher management, logs, accounts). |
+| Teacher / Staff | staff@example.com | Abc12345! | View Student, Grades, Study Materials, Profile, Notifications menus. (Hidden Admin and Teacher config). |
+| Student | student@example.com | Abc12345! | Only view Overview, Profile, Grades, Study Materials and Notifications menus. (Hidden all other management). |
