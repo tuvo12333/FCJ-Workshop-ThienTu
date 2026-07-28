@@ -52,7 +52,7 @@ _Lợi ích và hoàn vốn đầu tư (ROI)_
 
 
 
-![AWS Student Management Portal](/images/2-Proposal/aws.jpg)
+![AWS Student Management Portal](/images/2-Proposal/web-success.png)
 
 _Dịch vụ AWS sử dụng_
 
